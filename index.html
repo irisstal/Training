@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Zebra Striped Table</title>
+	</head>
+
+	<style type="text/css">
+		table{
+			border-collapse: collapse;
+			border-spacing: 0;
+			width: 100%;
+			border-top: blank;
+			border-bottom: 1px;
+			border-right: blank
+		}
+
+		th, td{
+			text-align: left;
+			padding:  16px;
+			border-bottom: solid
+		}
+
+		tr:nth-child(even){
+			background-color: #f2f2f2;
+		}
+
+
+		.wrapper {
+			text-align: center;
+		}
+	</style>
+
+	<body>
+		<p style="text-align:center">Thanks for giving your reviews</p>
+
+		<!---Table Data--->
+
+		<div class="container">
+
+			<div style="float: right">
+            <label>Filter: </label> <input type="text" id="myInput" onkeyup='tableSearch()' placeholder="Set">
+        	</div>
+
+			<table class="table" id="myTable" data-filter-control="true" data-show-search-clear-button="true">
+				<tr>
+					<th>Set</th>
+					<th>Day</th>
+					<th>Dj</th>
+					<th>Rating</th>
+					<th>Comment</th>
+				</tr>
+
+				<tr>
+					<td>1</td>
+					<td>Friday</td>
+					<td>Wow</td>
+					<td>3</td>
+					<td>24</td>
+				</tr>
+
+				<tr>
+					<td>2</td>
+					<td>Saturday</td>
+					<td>Wow</td>
+					<td>3</td>
+					<td>24</td>
+				</tr>
+
+				<tr>
+					<td>3</td>
+					<td>Saturday</td>
+					<td>Wow</td>
+					<td>3</td>
+					<td>24</td>
+				</tr>
+
+				<tr>
+					<td>4</td>
+					<td>Sunday</td>
+					<td>Wow</td>
+					<td>3</td>
+					<td>24</td>
+				</tr>
+			</table>
+			<br>
+
+			<div class="wrapper">
+				<button class="button">Add your review</button>
+			</div>
+		</button>
+
+		<p style="text-align:center">See you again in 2022!</p>
+
+		<script type="application/javascript">
+		function tableSearch(){
+			let input, filter, table, tr, td, txtValue;
+
+			//Initialising variables
+			input = document.getElementById("myInput");
+			filter = input.value.toUpperCase();
+			table = document.getElementById("myTable");
+			tr = table.getElementsByTagName("tr");
+
+			for(let i = 0; i < tr.length; i++){
+				td = tr[i].getElementsByTagName("td")[0];
+				if (td) {
+					txtValue = td.textContent || td.innerText;
+					if(txtValue.toUpperCase().indexOf(filter) > -1) {
+						tr[i].style.display = "";
+					} else { 
+						tr[i].style.display = "none";
+					}
+				}
+			}
+
+
+			}
+		</script>
+
+	</body>
+</html>
