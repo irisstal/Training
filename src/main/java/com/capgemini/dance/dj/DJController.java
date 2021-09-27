@@ -1,5 +1,6 @@
-package com.example.springboot.DJ;
+package com.capgemini.dance.dj;
 
+import com.capgemini.dance.dj.entity.DJ;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -19,13 +20,13 @@ public class DJController {
 
     @GetMapping // Get all djs in table
     public List<DJ> GetDJs() {
-        return djService.GetDJs();
+        return djService.getDJs();
     }
 
     @GetMapping
     @RequestMapping("{id}")
     public DJ get(@PathVariable Long dj_Id) {
-        return DJRepository.getOne(dj_Id);
+        return djService.getOneDj(dj_Id);
     }
 
     @PostMapping //

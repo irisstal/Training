@@ -1,34 +1,36 @@
-package com.example.springboot.DJ;
+package com.capgemini.dance.dj.entity;
 
-import com.example.springboot.Set.Set;
+import com.capgemini.dance.sets.entity.Sets;
 
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table
 public class DJ {
 
     @Id
-    @GeneratedValue(
-            strategy = GenerationType.IDENTITY
-    )
-    private Long dj_Id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long djId;
     private String name;
     private Integer age;
     private String style;
 
-    @ManyToMany(mappedBy = "djs") //Mapped by tussen quotes.
-    private List<Set> sets;
+    @ManyToMany //Mapped by tussen quotes.
+    @JoinTable(
+            name = "djs_sets",
+            joinColumns = @JoinColumn(name = "djId"),
+            inverseJoinColumns = @JoinColumn(name="setId")
+    )
+    private List<Sets> sets;
 
     public DJ() { // No-argument constructor
     }
 
-    public DJ(Long dj_Id, // Methods with parameters
+    public DJ(Long djId, // Methods with parameters
               String name,
               Integer age,
               String style) {
-        this.dj_Id = dj_Id;
+        this.djId = djId;
         this.name = name;
         this.age = age;
         this.style = style;
@@ -42,12 +44,12 @@ public class DJ {
         this.style = style;
     }
 
-    public Long getDj_Id() {
-        return dj_Id;
+    public Long getDjId() {
+        return djId;
     }
 
-    public void setDj_Id(Long dj_Id) {
-        this.dj_Id = dj_Id;
+    public void setDjId(Long djId) {
+        this.djId = djId;
     }
 
     public String getName() {
@@ -74,18 +76,18 @@ public class DJ {
         this.style = style;
     }
 
-    public List<Set> getSets() {
+    public List<Sets> getSets() {
         return sets;
     }
 
-    public void setSets(List<Set> sets) {
+    public void setSets(List<Sets> sets) {
         this.sets = sets;
     }
 
     @Override
     public String toString() {
         return "DJ{" +
-                "dj_Id=" + dj_Id +
+                "dj_Id=" + djId +
                 ", name='" + name + '\'' +
                 ", age=" + age +
                 ", style='" + style + '\'' +

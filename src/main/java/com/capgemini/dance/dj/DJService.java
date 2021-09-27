@@ -1,5 +1,7 @@
-package com.example.springboot.DJ;
+package com.capgemini.dance.dj;
 
+import com.capgemini.dance.dj.entity.DJ;
+import com.capgemini.dance.dj.repository.DJRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,11 +17,16 @@ public class DJService {
         this.djRepository = djRepository;
     }
 
-    public List<DJ> GetDJs() {
+    public List<DJ> getDJs() {
         return djRepository.findAll();
     }
 
     public void addNewDJ(DJ dj) {
         System.out.println(dj);
     }
+
+    public DJ getOneDj(Long dj_Id) {
+        return djRepository.getById(dj_Id);
+    }
+
 }
